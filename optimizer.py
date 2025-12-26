@@ -32,3 +32,17 @@ print("Simulation Results (Annual Operating Costs):")
 for city, values in cities.items():
     avg, risk = run_simulation(city, values[0], values[1], values[2])
     print(f"{city}: Average: ${avg:,.0f} | 95th Percentile (Risk): ${risk:,.0f}")
+    import matplotlib.pyplot as plt
+
+# Add this to your script to visualize the comparison
+def plot_results(all_results):
+    plt.figure(figsize=(10, 6))
+    for city_name, costs in all_results.items():
+        plt.hist(costs, bins=50, alpha=0.5, label=city_name)
+    
+    plt.title("Distribution of Annual Operating Costs")
+    plt.xlabel("Cost ($)")
+    plt.ylabel("Frequency")
+    plt.legend()
+    plt.grid(axis='y', alpha=0.3)
+    plt.show()
